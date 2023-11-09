@@ -50,3 +50,6 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 # copilot
 git clone https://github.com/github/copilot.vim.git \
   ~/.config/nvim/pack/github/start/copilot.vim 2> /dev/null
+
+# cleanup
+rm nvim.appimage llvm.sh

@@ -43,6 +43,9 @@ chmod +x llvm.sh
 sudo ./llvm.sh 16
 sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-16 100
 
+# sshfs
+sudo apt-get install sshfs
+
 # packer
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim 2> /dev/null

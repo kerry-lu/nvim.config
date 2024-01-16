@@ -32,7 +32,11 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
 fi
 
-echo 'alias vi=nvim' >> ~/.bashrc 
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    echo 'alias vi=nvim' >> ~/.zshrc
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    echo 'alias vi=nvim' >> ~/.bashrc
+fi
 
 # xclip clipboard
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -67,11 +71,6 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     chmod +x llvm.sh
     sudo ./llvm.sh 16
     sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-16 100
-fi
-
-# sshfs
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    sudo apt-get install sshfs
 fi
 
 # packer

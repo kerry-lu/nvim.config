@@ -47,10 +47,5 @@ use { "neovim/nvim-lspconfig" }
 
 use { "sindrets/diffview.nvim" }
 
-use {
-  'nosduco/remote-sshfs.nvim',
-  requires = { {'nvim-telescope/telescope.nvim'} }
-}
-
 end)
 

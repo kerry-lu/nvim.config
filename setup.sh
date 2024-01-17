@@ -77,10 +77,6 @@ fi
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim 2> /dev/null
 
-# copilot
-git clone https://github.com/github/copilot.vim.git \
-  ~/.config/nvim/pack/github/start/copilot.vim 2> /dev/null
-
 # cleanup
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     rm nvim.appimage llvm.sh

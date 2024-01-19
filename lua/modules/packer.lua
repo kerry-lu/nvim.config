@@ -47,5 +47,13 @@ use { "neovim/nvim-lspconfig" }
 
 use { "sindrets/diffview.nvim" }
 
-end)
+use { "williamboman/mason.nvim" }
 
+-- Amazon specific packages
+use {
+  "lukerry@git.amazon.com:pkg/NinjaHooks",
+  branch = "mainline",
+  rtp = 'configuration/vim/amazon/brazil-config',
+}
+
+end)

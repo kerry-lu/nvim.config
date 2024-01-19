@@ -32,3 +32,30 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
   end,
 })
+
+-- java
+require('mason').setup({})
+lspconfig.jdtls.setup {}
+
+-- typescript
+lspconfig.tsserver.setup {}
+
+-- Amazon specific
+-- Barium
+local configs = require 'lspconfig.configs'
+
+-- Check if the config is already defined (useful when reloading this file)
+if not configs.barium then
+    configs.barium = {
+        default_config = {
+            cmd = {'barium'};
+            filetypes = {'brazil-config'};
+            root_dir = function(fname)
+                return lspconfig.util.find_git_ancestor(fname)
+            end;
+            settings = {};
+        };
+    }
+end
+
+lspconfig.barium.setup {}

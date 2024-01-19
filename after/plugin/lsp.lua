@@ -2,20 +2,6 @@ require("modules/remap")
 
 -- Setup language servers.
 local lspconfig = require('lspconfig')
--- python
-lspconfig.pyright.setup {}
--- c, cpp, objc, objcpp, cuda, proto
-lspconfig.clangd.setup{
-    cmd = {
-        "clangd",
-        "--clang-tidy",
-        "--background-index",
-        "--suggest-missing-includes",
-        "--compile-commands-dir=~/.config/clangd/config.yaml",
-    },
-    filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto", "hpp" },
-}
-
 -- Global mappings.
 
 -- Use LspAttach autocommand to only map the following keys
@@ -33,12 +19,17 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
--- java
 require('mason').setup({})
-lspconfig.jdtls.setup {}
-
--- typescript
-lspconfig.tsserver.setup {}
+require("mason-lspconfig").setup {
+    ensure_installed = { "jdtls", "pyright", "clangd", "tsserver", "kotlin_language_server", "lua_ls" },
+    handlers = {
+      function(server)
+        lspconfig[server].setup({
+          capabilities = lsp_capabilities,
+        })
+      end
+    }
+}
 
 -- Amazon specific
 -- Barium

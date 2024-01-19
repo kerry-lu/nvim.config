@@ -43,11 +43,13 @@ use {
     end
 }
 
-use { "neovim/nvim-lspconfig" }
-
 use { "sindrets/diffview.nvim" }
 
-use { "williamboman/mason.nvim" }
+use {
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
+}
 
 -- Amazon specific packages
 use {

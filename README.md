@@ -9,5 +9,6 @@ To setup, run the following steps in terminal:
 5. `./setup.sh`
 6. `nvim .`
 7. When nvim opens up, run `:PackerSync` twice.
+8. Run :MasonInstall {lsp} for lsp in {pyright, clangd, jdtls}.
 
 Note: on MacOS custom color schemes will generally fail on the default terminal. I recommend using [iTerm2](https://iterm2.com/).

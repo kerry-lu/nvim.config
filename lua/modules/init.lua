@@ -42,3 +42,12 @@ vim.g.clipboard = {
   cache_enabled = 1,
 }
 
+-- Remove trailing whitespace on disk write
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+    pattern = {"*"},
+    callback = function(ev)
+        save_cursor = vim.fn.getpos(".")
+        vim.cmd([[%s/\s\+$//e]])
+        vim.fn.setpos(".", save_cursor)
+    end,
+})

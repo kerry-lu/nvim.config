@@ -18,9 +18,5 @@ vim.opt.smartindent = true
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
--- tell nvim to use the clipboard for all yank, delete, change and put operations
--- 'unnamed' for mac, 'unnamedplus' for linux
-vim.opt.clipboard = {"unnamed","unnamedplus"}
-
 -- Amazon specific
 vim.filetype.add({ filename = { Config = "brazil-config" } })

@@ -12,11 +12,6 @@ use {
   requires = { {'nvim-lua/plenary.nvim'} }
 }
 
-use {
-  'nvim-lualine/lualine.nvim',
-  requires = { 'nvim-tree/nvim-web-devicons', opt = true }
-}
-
 use { "folke/tokyonight.nvim" }
 
 use {
@@ -24,10 +19,9 @@ use {
     run = ':TSUpdate'
 }
 
-use "nvim-tree/nvim-web-devicons"
 use {
     "cbochs/grapple.nvim",
-    requires = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons" },
+    requires = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons", "nvim-lualine/lualine.nvim" },
 }
 
 use {

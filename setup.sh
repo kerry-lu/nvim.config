@@ -24,14 +24,6 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     echo 'alias vi=nvim' >> ~/.bashrc
 fi
 
-# xclip clipboard
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    brew install xclip
-elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    sudo apt-get update
-    sudo apt-get install xclip
-fi
-
 # telescope live_grep
 if [[ "$OSTYPE" == "darwin"* ]]; then
     brew install ripgrep

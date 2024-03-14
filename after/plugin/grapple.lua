@@ -1,9 +1,8 @@
 require("grapple")
-require("modules.remap")
 
-keymap_once("n", "<leader>t", require("grapple").tag)
-keymap_once("n", "<leader>u", require("grapple").untag)
-keymap_once("n", "<leader>pt", require("grapple").popup_tags)
+vim.keymap.set("n", "<leader>t", require("grapple").tag)
+vim.keymap.set("n", "<leader>u", require("grapple").untag)
+vim.keymap.set("n", "<leader>pt", require("grapple").toggle_tags)
 
 local grapple_msg = function()
   return "Tag [" .. require("grapple").key() .. "]"

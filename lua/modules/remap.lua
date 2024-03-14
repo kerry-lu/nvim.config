@@ -1,22 +1,23 @@
--- Global table of all user defined keymaps
-USER_KEYMAPS = {}
+vim.g.mapleader = ","
+vim.keymap.set("n", "<leader>q", "<cmd>Ex<CR>")
 
--- Set a user-defined keymap, printing an error if it overrides a previous one
-function keymap_once(mode, key, command)
-  local key_fixed = key:gsub('<C%-[%l]>', function(c) return c:upper() end)
+-- Split pane and navigation shortcuts
+vim.keymap.set("n", "<leader>s", "<cmd>sp<CR><C-w><C-j>")
+vim.keymap.set("n", "<leader>v", "<cmd>vsp<CR><C-w><C-l>")
+vim.keymap.set("n", "<C-h>", "<C-w><C-h>")
+vim.keymap.set("n", "<C-j>", "<C-w><C-j>")
+vim.keymap.set("n", "<C-k>", "<C-w><C-k>")
+vim.keymap.set("n", "<C-l>", "<C-w><C-l>")
 
-  if not USER_KEYMAPS[mode] then
-    USER_KEYMAPS[mode] = {}
-  end
+-- paste without overwriting register
+vim.keymap.set('v', 'p', 'P', { noremap = true })
 
-  for _, map_key in pairs(USER_KEYMAPS[mode]) do
-    if map_key == key_fixed then
-      print('Warning: key sequence ' .. key .. ' is already mapped')
-      return
-    end
-  end
-
-  -- vim.api.nvim_set_keymap(mode, key, command, options)
-  vim.keymap.set(mode, key, command)
-  table.insert(USER_KEYMAPS[mode], key_fixed)
-end
+-- Remove trailing whitespace
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+    pattern = {"*"},
+    callback = function(ev)
+        save_cursor = vim.fn.getpos(".")
+        vim.cmd([[%s/\s\+$//e]])
+        vim.fn.setpos(".", save_cursor)
+    end,
+})

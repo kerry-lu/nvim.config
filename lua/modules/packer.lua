@@ -24,9 +24,10 @@ use {
     run = ':TSUpdate'
 }
 
+use "nvim-tree/nvim-web-devicons"
 use {
     "cbochs/grapple.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
+    requires = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons" },
 }
 
 use {
@@ -46,14 +47,25 @@ use {
 use { "sindrets/diffview.nvim" }
 
 use {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-    "neovim/nvim-lspconfig",
+  'VonHeikemen/lsp-zero.nvim',
+  branch = 'v3.x',
+  requires = {
+    {'mfussenegger/nvim-jdtls'},
+    --- Uncomment the two plugins below if you want to manage the language servers from neovim
+    {'williamboman/mason.nvim'},
+    {'williamboman/mason-lspconfig.nvim'},
+
+    -- LSP Support
+    {'neovim/nvim-lspconfig'},
+    -- Autocompletion
+    {'hrsh7th/nvim-cmp'},
+    {'hrsh7th/cmp-nvim-lsp'},
+    {'L3MON4D3/LuaSnip'},
+  }
 }
 
--- Amazon specific packages
 use {
-  "lukerry@git.amazon.com:pkg/NinjaHooks",
+  "lukerry@git.amazon.com:pkg/NinjaHooks", -- Barium (Amazon specific)
   branch = "mainline",
   rtp = 'configuration/vim/amazon/brazil-config',
 }

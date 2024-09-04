@@ -38,20 +38,60 @@ return {
 
     end
 
-    lsp_zero.on_attach(function(client, bufnr)
-      -- see :help lsp-zero-keybindings
-      -- to learn the available actions
-      lsp_zero.default_keymaps({buffer = bufnr})
-      bemol()
-    end)
-
     require('mason').setup({})
     require('mason-lspconfig').setup({
-      ensure_installed = { "jdtls", "pyright", "clangd", "tsserver", "kotlin_language_server", "lua_ls" },
+      ensure_installed = { "jdtls", "pyright", "clangd", "tsserver", "kotlin_language_server", "lua_ls", "solargraph",
+        "smithy_ls" },
       handlers = {
         lsp_zero.default_setup,
         jdtls = lsp_zero.noop,
       }
     })
+
+    local lspconfig = require 'lspconfig'
+    local configs = require 'lspconfig.configs'
+
+    -- Check if the config is already defined (useful when reloading this file)
+    if not configs.barium then
+        configs.barium = {
+            default_config = {
+                cmd = {'barium'};
+                filetypes = {'brazil-config'};
+                root_dir = function(fname)
+                    return lspconfig.util.find_git_ancestor(fname)
+                end;
+                settings = {};
+            };
+        }
+    end
+    lspconfig.barium.setup {}
+
+    -- Code Whisperer
+    lsp_zero.new_client({
+      name = 'codewhisperer',
+      cmd = { 'cwls' },
+      filetypes = { 'java', 'python', 'typescript', 'javascript', 'csharp', 'ruby', 'kotlin', 'shell', 'sql', 'c', 'cpp', 'go', 'rust' },
+      autostart = true,
+      root_dir = function()
+        return lsp_zero.dir.find_first({'Config', 'brazil.ion'})
+      end
+    })
+
+    lsp_zero.on_attach(function(client, bufnr)
+      -- see :help lsp-zero-keybindings
+      -- to learn the available actions
+      lsp_zero.default_keymaps({buffer = bufnr})
+
+      local cmp = require('cmp')
+      cmp.setup({
+        mapping = cmp.mapping.preset.insert({
+          ['<CR>'] = cmp.mapping.confirm({select = false}),
+        }),
+      })
+
+      vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', {buffer = bufnr})
+      bemol()
+    end)
+
   end
 }

@@ -1,5 +1,5 @@
 return {
-  url = "<lukerry>@git.amazon.com:pkg/NinjaHooks",
+  url = "lukerry@git.amazon.com:pkg/NinjaHooks",
   branch = "mainline",
   lazy = false,
   config = function(plugin)

@@ -66,17 +66,6 @@ return {
     end
     lspconfig.barium.setup {}
 
-    -- Code Whisperer
-    lsp_zero.new_client({
-      name = 'codewhisperer',
-      cmd = { 'cwls' },
-      filetypes = { 'java', 'python', 'typescript', 'javascript', 'csharp', 'ruby', 'kotlin', 'shell', 'sql', 'c', 'cpp', 'go', 'rust' },
-      autostart = true,
-      root_dir = function()
-        return lsp_zero.dir.find_first({'Config', 'brazil.ion'})
-      end
-    })
-
     lsp_zero.on_attach(function(client, bufnr)
       -- see :help lsp-zero-keybindings
       -- to learn the available actions

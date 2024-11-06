@@ -4,7 +4,9 @@ vim.cmd([[colorscheme tokyonight-moon]])
 
 -- Display relative line number
 vim.opt.relativenumber = true
-vim.api.nvim_set_hl(0, 'LineNr', { fg = "green" })
+vim.api.nvim_set_hl(0, 'LineNrAbove', { fg='white' })
+vim.api.nvim_set_hl(0, 'LineNr', { fg='green' })
+vim.api.nvim_set_hl(0, 'LineNrBelow', { fg='magenta' })
 
 -- set textwidth to 119 characters and highlight the column one to the right
 vim.opt.textwidth = 119
